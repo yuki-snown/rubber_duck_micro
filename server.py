@@ -10,6 +10,8 @@ from linebot.models import (
 )
 
 import os
+import json
+import requests
 from flask import Flask, request, abort
 from flask_cors import CORS
 
@@ -46,9 +48,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    url = 'http://ec2-3-112-68-32.ap-northeast-1.compute.amazonaws.com'
+    resp = requests.get(url, params={'text':event.message.text}).json()
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=resp['msg']))
 
 
 if __name__ == "__main__":
