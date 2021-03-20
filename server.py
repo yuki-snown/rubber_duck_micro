@@ -1,4 +1,3 @@
-from flask import Flask, request, abort
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -11,8 +10,11 @@ from linebot.models import (
 )
 
 import os
+from flask import Flask, request, abort
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
