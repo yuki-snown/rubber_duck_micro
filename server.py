@@ -48,7 +48,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    url = 'https://g6ykvq7is4.execute-api.ap-northeast-1.amazonaws.com'
+    url = 'https://g6ykvq7is4.execute-api.ap-northeast-1.amazonaws.com/'
     resp = requests.get(url, params={'text':event.message.text}).json()
     line_bot_api.reply_message(
         event.reply_token,
